@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+    <dict>
+      <key>CLIENT_ID</key>
+      <string>387348386440-q3ep2qkksthbvuqu5o0aeo1d7pdq8emh.apps.googleusercontent.com</string>
+      <key>REVERSED_CLIENT_ID</key>
+      <string>com.googleusercontent.apps.387348386440-q3ep2qkksthbvuqu5o0aeo1d7pdq8emh</string>
+      <key>PLIST_VERSION</key>
+      <string>1</string>
+      <key>BUNDLE_ID</key>
+      <string>dev.scottkey.punchlist</string>
+    </dict>
+    </plist>
