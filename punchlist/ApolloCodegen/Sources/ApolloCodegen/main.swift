@@ -2,8 +2,13 @@ import ApolloCodegenLib
 import ArgumentParser
 import Foundation
 
+private let endPoint = "http://localhost:3000/graphql"
+private let appName = "punchlist"
+
 // An outer structure to hold all commands and sub-commands handled by this script.
 struct SwiftScript: ParsableCommand {
+
+ 
     static var configuration = CommandConfiguration(
         abstract: """
         A swift-based utility for performing Apollo-related tasks.
@@ -24,12 +29,12 @@ struct SwiftScript: ParsableCommand {
             
             // Set up the URL you want to use to download the project
             // TODO: Replace the placeholder with the GraphQL endpoint you're using to download the schema.
-            let endpoint = URL(string: "https://apollo-fullstack-tutorial.herokuapp.com")!
+            let endpoint = URL(string: endPoint)!
             
             // Calculate where you want to create the folder where the schema will be downloaded by the ApolloCodegenLib framework.
             // TODO: Replace the placeholder with the name of the actual folder where you want the downloaded schema saved. The default is set up to put it in your project's root.
             let folderForDownloadedSchema = fileStructure.sourceRootURL
-                .apollo.childFolderURL(folderName: "punchlist")
+                .apollo.childFolderURL(folderName: appName)
             
             // Make sure the folder is created before trying to download something to it.
             try FileManager.default.apollo.createFolderIfNeeded(at: folderForDownloadedSchema)
@@ -56,7 +61,7 @@ struct SwiftScript: ParsableCommand {
             // Get the root of the target for which you want to generate code.
             // TODO: Replace the placeholder here with the name of of the folder containing your project's code files.
             let targetRootURL = fileStructure.sourceRootURL
-                .apollo.childFolderURL(folderName: "punchlist")
+                .apollo.childFolderURL(folderName: appName)
             
             // Make sure the folder exists before trying to generate code.
             try FileManager.default.apollo.createFolderIfNeeded(at: targetRootURL)

@@ -5,21 +5,30 @@
 //  Created by Scott Key on 1/3/22.
 //
 
-import Firebase
 import SwiftUI
 
 @main
 struct punchlistApp: App {
-    @StateObject var auth = UserAuthModel()
-
     init() {
-        FirebaseApp.configure()
+        ApolloTest()
     }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(auth)
+        }
+    }
+}
+
+extension punchlistApp {
+    func ApolloTest() {
+        Network.shared.apollo.fetch(query: HelloQuery()) { result in
+            switch result {
+            case .success(let graphQLResult):
+                print("Success! Result: \(String(describing: graphQLResult.data?.hello))")
+            case .failure(let error):
+                print("Failure! Error: \(error)")
+            }
         }
     }
 }

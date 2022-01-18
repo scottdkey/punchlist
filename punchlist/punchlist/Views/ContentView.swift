@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var auth: UserAuthModel
+    @StateObject var auth = UserAuthModel()
     var body: some View {
         switch auth.state {
             case .signedIn: HomeView()
+            .environmentObject(self.auth)
             case .signedOut: LoginView()
+            .environmentObject(self.auth)
         }
     }
 }

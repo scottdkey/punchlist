@@ -5,14 +5,14 @@
 //  Created by Scott Key on 1/16/22.
 //
 
-import SwiftUI
 import GoogleSignIn
-
-
+import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var auth: UserAuthModel
-    
+
+    init() {}
+
     var body: some View {
         VStack {
             Spacer()
@@ -32,7 +32,6 @@ struct LoginView: View {
                     auth.signIn()
                 }
         }
-        
     }
 }
 

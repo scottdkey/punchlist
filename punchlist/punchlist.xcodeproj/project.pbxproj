@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		56185F542795025400F45DA1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 56185F532795025400F45DA1 /* FirebaseAuth */; };
 		56185F57279502B800F45DA1 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 56185F56279502B800F45DA1 /* GoogleSignIn */; };
 		56873A802795106E00F0B165 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56873A7F2795106E00F0B165 /* LoginView.swift */; };
 		56873A822795109100F0B165 /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56873A812795109100F0B165 /* GoogleSignInButton.swift */; };
@@ -54,7 +53,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				56CE097327953084004C4BC3 /* ApolloCodegenLib in Frameworks */,
-				56185F542795025400F45DA1 /* FirebaseAuth in Frameworks */,
 				56CE096927952C07004C4BC3 /* ApolloWebSocket in Frameworks */,
 				56CE096727952C07004C4BC3 /* Apollo in Frameworks */,
 				56185F57279502B800F45DA1 /* GoogleSignIn in Frameworks */,
@@ -161,7 +159,6 @@
 			);
 			name = punchlist;
 			packageProductDependencies = (
-				56185F532795025400F45DA1 /* FirebaseAuth */,
 				56185F56279502B800F45DA1 /* GoogleSignIn */,
 				56CE096627952C07004C4BC3 /* Apollo */,
 				56CE096827952C07004C4BC3 /* ApolloWebSocket */,
@@ -196,7 +193,6 @@
 			);
 			mainGroup = 56EA8FAF27837A86004CA3E1;
 			packageReferences = (
-				56185F522795025400F45DA1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				56185F55279502B800F45DA1 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				56CE096527952C06004C4BC3 /* XCRemoteSwiftPackageReference "apollo-ios" */,
 			);
@@ -240,7 +236,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\ncd \"${SRCROOT}\"/ApolloCodegen\nxcrun -sdk macosx swift run ApolloCodegen generate\n";
+			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\ncd \"${SRCROOT}\"/ApolloCodegen\nxcrun -sdk macosx swift run ApolloCodegen downloadSchema\n\ncd \"${SRCROOT}\"/ApolloCodegen\nxcrun -sdk macosx swift run ApolloCodegen generate\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -465,14 +461,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		56185F522795025400F45DA1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		56185F55279502B800F45DA1 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -492,11 +480,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		56185F532795025400F45DA1 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 56185F522795025400F45DA1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
 		56185F56279502B800F45DA1 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 56185F55279502B800F45DA1 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;

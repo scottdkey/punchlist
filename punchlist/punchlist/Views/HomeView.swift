@@ -13,6 +13,8 @@ struct HomeView: View {
 
     private let user = GIDSignIn.sharedInstance.currentUser
 
+    
+
     var body: some View {
         NavigationView {
             VStack {
