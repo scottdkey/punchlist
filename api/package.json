@@ -12,9 +12,8 @@
     "lint": "eslint",
     "watch:typescript": "tsc -w",
     "watch:node": "nodemon ./dist/index.js",
-    "build:typescript": "tsc",
-    "build:test": "test",
-    "build": "run-s build:test build:typescript",
+    "typescript": "tsc",
+    "build": "run-s test typescript",
     "migration:create": "mikro-orm migration:create"
   },
   "dependencies": {
