@@ -30,17 +30,6 @@ class UserAuthModel: ObservableObject {
         user.authentication.do { authentication, error in
             guard error == nil else { return }
             guard let authentication = authentication else { return }
-            print("id token")
-            print(authentication.idToken ?? "")
-            print("clientID")
-            print(authentication.clientID)
-            print("accessToken")
-            print(authentication.accessToken)
-            print("accessTokenExpirationDate")
-            print(authentication.accessTokenExpirationDate)
-            print("refreshToken")
-            print(authentication.refreshToken)
-
             guard let idToken = authentication.idToken else { return }
             self.token = idToken
         }

@@ -3,19 +3,21 @@ import bodyParser from "koa-bodyparser"
 import Koa from "koa"
 
 import authRoutes from "./routes/authRoutes"
-// import { MikroORM } from "@mikro-orm/core"
-// import MikroConfig from "./mikro-orm.config"
+import { MikroORM } from "@mikro-orm/core"
+import MikroConfig from "./mikro-orm.config"
 import { ApolloServer } from "apollo-server-koa"
 import cors from "koa-cors"
 import { buildSchema } from "type-graphql"
 import { MyContext } from "./types"
 import { HelloResolver } from "./resolvers/hello"
+import { UserResolver } from "./resolvers/user"
+import { PORT } from "./constants"
 
 
 const main = async () => {
   const app = new Koa()
   //orm setup for later
-  // const orm = await MikroORM.init(MikroConfig)
+  const orm = await MikroORM.init(MikroConfig)
 
 
 
@@ -30,24 +32,26 @@ const main = async () => {
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
       resolvers: [
-        HelloResolver
+        HelloResolver,
+        UserResolver
       ],
       validate: true
     }),
     context: ({ ctx }: MyContext) => {
       //TODO: setup user auth and drop into context
-      return { ctx }
+      return { ctx, em: orm.em.fork() }
     }
   })
   await apolloServer.start().then(() => {
     console.log("started")
   })
-  apolloServer.applyMiddleware({ app })
+  apolloServer.applyMiddleware({
+    app,
+    cors: false
+  })
 
-  const __port__ = process.env.PORT || 3000
-
-  app.listen(__port__, () => {
-    console.log(`server started at http://localhost:${__port__}/graphql`)
+  app.listen(PORT, () => {
+    console.log(`server started at http://localhost:${PORT}/graphql`)
 
   })
 

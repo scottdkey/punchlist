@@ -55,12 +55,6 @@ struct HomeView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
-
 struct NetworkImage: View {
     let url: URL?
 
@@ -79,3 +73,12 @@ struct NetworkImage: View {
         }
     }
 }
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+            .environmentObject(UserAuthModel())
+    }
+}
+
+

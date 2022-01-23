@@ -11,8 +11,6 @@ import SwiftUI
 struct LoginView: View {
     @EnvironmentObject var auth: UserAuthModel
 
-    init() {}
-
     var body: some View {
         VStack {
             Spacer()
@@ -38,5 +36,6 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(UserAuthModel())
     }
 }
