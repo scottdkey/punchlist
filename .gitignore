@@ -4,7 +4,7 @@ postgresql/
 .env
 .css
 */dist/
-
+node_modules
 
 # Xcode
 #
