@@ -1,6 +1,9 @@
 import { MikroORM, ReflectMetadataProvider } from "@mikro-orm/core"
 import path from "path"
-import { __prod__, __test__ } from "./constants"
+import { pgConfig, __prod__, __test__ } from "./constants"
+import { AppleProfile } from "./entities/AppleProfile"
+import { GoogleProfile } from "./entities/GoogleProfile"
+import { User } from "./entities/user"
 
 
 export default {
@@ -10,12 +13,16 @@ export default {
     patter: /^[\w-]+\d+\.[tj]s$/,
     transactional: true
   },
-  entities: [],
-  dbName: "postgres",
-  user: "postgres",
-  password: "postgres",
-  host: "localhost",
-  port: 5432,
+  entities: [
+    User,
+    AppleProfile,
+    GoogleProfile
+  ],
+  dbName: pgConfig.database,
+  user: pgConfig.user,
+  password: pgConfig.password,
+  host: pgConfig.host,
+  port: pgConfig.port,
   type: "postgresql",
   debug: !__prod__ || !__test__
 

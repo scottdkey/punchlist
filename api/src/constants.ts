@@ -1,15 +1,17 @@
 
+import dotenv from "dotenv"
 
 
-export const pgConfig = () => {
-  return {
-    dbName: process.env.PG_DATABASE || "postgres",
-    dbUser: process.env.PG_USER || "postgres",
-    dbPass: process.env.PG_PASSWORD || "postgres",
-    host: process.env.PG_HOST || "localhost",
-    port: process.env.PG_PORT || 5432,
+dotenv.config()
 
-  }
+export const pgConfig =
+{
+  database: process.env.PGDATABASE,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  host: process.env.PGHOST,
+  port: process.env.PGPORT,
+
 }
 export const PORT = process.env.PORT || 3000
 
