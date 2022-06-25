@@ -7,5 +7,5 @@ export interface TokenInterface {
 }
 
 
-export const signJwt = (userId: String) => jwt.sign({ id: userId }, __secretKey__!)
+export const signJwt = (userId: String): string => jwt.sign({ userId }, __secretKey__!)
 export const verifyJwt = (token: string): JwtPayload | string => jwt.verify(token, __secretKey__!)

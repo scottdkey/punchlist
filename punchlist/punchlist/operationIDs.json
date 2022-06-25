@@ -1,6 +1,0 @@
-{
-  "c3480ac7c119a88553b36f3f0ff43583b7c01f3b399dfe074d84b7daad442e38": {
-    "name": "Hello",
-    "source": "query Hello {\n  hello\n}"
-  }
-}

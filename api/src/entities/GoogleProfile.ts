@@ -30,6 +30,4 @@ export class GoogleProfile {
   @Property({ type: "date", onUpdate: () => new Date() })
   updatedAt = new Date()
 
-
-
 }
