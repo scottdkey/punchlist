@@ -1,9 +1,8 @@
 import "reflect-metadata"
 import bodyParser from "koa-bodyparser"
 import Koa from "koa"
-
 import authRoutes from "./routes/authRoutes"
-import { MikroORM } from "@mikro-orm/core"
+import { Connection, EntityManager, IDatabaseDriver, MikroORM } from "@mikro-orm/core"
 import MikroConfig from "./mikro-orm.config"
 import { ApolloServer } from "apollo-server-koa"
 import cors from "koa-cors"
@@ -16,8 +15,12 @@ import { PORT } from "./constants"
 
 const main = async () => {
   const app = new Koa()
-  //orm setup for later
-  const orm = await MikroORM.init(MikroConfig)
+  const orm = await MikroORM.init(MikroConfig).catch(e => console.error(e))
+  let entityManager: EntityManager<IDatabaseDriver<Connection>>
+
+  if (orm) {
+    entityManager = orm.em.fork()
+  }
 
 
 
@@ -39,7 +42,7 @@ const main = async () => {
     }),
     context: ({ ctx }: MyContext) => {
       //TODO: setup user auth and drop into context
-      return { ctx, em: orm.em.fork() }
+      return { ctx, em: entityManager }
     }
   })
   await apolloServer.start().then(() => {

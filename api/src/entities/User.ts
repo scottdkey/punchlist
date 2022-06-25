@@ -1,8 +1,6 @@
 import { Entity, PrimaryKey, Property, Unique } from "@mikro-orm/core";
 import { Field, ID, ObjectType } from "type-graphql";
 import { v4 } from "uuid";
-import { GoogleProfile } from "./GoogleProfile";
-import { AppleProfile } from "./AppleProfile"
 
 
 
@@ -26,13 +24,13 @@ export class User {
   @Property()
   lastName!: string
 
-  @Field(() => GoogleProfile)
-  @Property({ nullable: true })
-  googleProfile: GoogleProfile
+  @Field()
+  @Property({ nullable: true})
+  googleID: string
 
-  @Field(() => AppleProfile)
+  @Field()
   @Property({ nullable: true })
-  appleProfile: AppleProfile
+  appleID: string
 
   @Field(() => Date)
   @Property({ type: "date" })

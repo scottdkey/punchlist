@@ -19,8 +19,8 @@ class UserResponse {
   @Field(() => [ErrorType], { nullable: true })
   errors?: ErrorType[];
 
-  @Field(() => User, { nullable: true })
-  user?: User;
+  @Field(() => String, { nullable: true })
+  userID?: string;
 
   @Field(() => String, { nullable: true })
   token?: string;
@@ -74,10 +74,11 @@ export class UserResolver {
     const UserExists = await em.findOne(GoogleProfile, { id: sub })
 
     if (UserExists) {
-      ctx.state.user = UserExists.user
+      const userID = UserExists.id
+      ctx.state.userID = userID
       return {
-        user: UserExists.user,
-        token: signJwt(UserExists.id)
+        userID,
+        token: signJwt(userID)
       }
     } else {
       const googleProfile = await em.create(GoogleProfile, {
@@ -92,13 +93,14 @@ export class UserResolver {
         lastName: family_name,
         googleProfile,
       })
-      googleProfile.user = user
+      googleProfile.userID = user.id
       await em.persist([googleProfile, user]).flush()
-      ctx.state.user = user
+      const userID = user.id
+      ctx.state.userID = userID
 
       return {
-        user,
-        token: signJwt(user.id)
+        userID,
+        token: signJwt(userID)
       }
     }
   }

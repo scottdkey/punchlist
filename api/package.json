@@ -5,15 +5,22 @@
   "main": "/dist/index.js",
   "author": "Scott Key",
   "license": "MIT",
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/mikro-orm.config.ts",
+      "./dist/mikro-orm.config.js"
+    ]
+  },
   "scripts": {
     "start": "node ./dist/index.js",
-    "dev": "run-p watch:*",
+    "dev": "nodemon ./dist/index.js",
     "test": "mocha -r ts-node/register ./src/**/*.test.ts --exit",
+    "test:watch": "mocha -r ts-node/register ./src/**/*.test.ts --watch",
     "lint": "eslint",
-    "watch:typescript": "tsc -w",
-    "watch:node": "nodemon ./dist/index.js",
-    "typescript": "tsc",
-    "build": "run-s test typescript",
+    "ts:watch": "tsc -w",
+    "ts": "tsc",
+    "build": "run-s test ts",
     "migration:create": "mikro-orm migration:create"
   },
   "dependencies": {

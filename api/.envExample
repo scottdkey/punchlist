@@ -1,0 +1,10 @@
+PGDATABASE = "punchlist"
+PGUSER = "punchlist"
+PGPASSWORD = "punchlist"
+PGHOST = "localhost"
+PGPORT = 5432
+
+
+PORT = 3000
+
+GOOGLE_CLIENT_ID = ""

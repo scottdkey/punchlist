@@ -1,0 +1,17 @@
+{
+  "name": "punchlist",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/scottdkey/punchlist.git",
+  "author": "Scott Key <scottdkey@gmail.com>",
+  "license": "MIT", 
+  "scripts": {
+    "api:dev": "cd ./api && yarn dev",
+    "api:test:watch": "cd ./api && yarn test:watch",
+    "api:test": "cd ./api && yarn test",
+    "api:ts": "cd ./api && yarn ts",
+    "api:ts:watch": "cd ./api && yarn ts:watch",
+    "start-database:dev": "docker-compose up -d",
+    "stop-database:dev": "docker-compose down"
+  }
+}

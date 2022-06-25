@@ -1,6 +1,5 @@
 import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { ObjectType, Field, ID } from "type-graphql";
-import { User } from "./user";
 
 
 @ObjectType()
@@ -18,9 +17,9 @@ export class AppleProfile {
   @Property()
   picture!: string
 
-  @Field(() => User)
-  @Property()
-  user: User
+  @Field()
+  @Property({ nullable: true })
+  userID: string
 
   @Field(() => Date)
   @Property({ type: "date" })
